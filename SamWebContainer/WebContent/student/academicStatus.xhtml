@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="tableStyles.css" />
+	<title>ACADEMIC STATUS FOR ME</title>
+</h:head>
+<h:body>
+	<h:form method="post">
+		<h2>Estado academico</h2>
+		<h:dataTable border="1"
+			value="#{studentAcademicStatusManagedBean.academicStatusList}"
+			var="academicStatus" rowClasses="odd, even">
+
+			<h:column>
+				<f:facet name="header">Materia</f:facet>
+				<h:outputText value="#{academicStatus.careerCourseName}" />
+			</h:column>
+
+			<!-- 			courseStateList -->
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				<h:selectOneMenu value="#{academicStatus.courseState}">
+					<f:selectItem itemValue="#{null}" itemLabel="" />
+					<f:selectItems
+						value="#{studentAcademicStatusManagedBean.courseStateArray}"
+						var="courseState" itemValue="#{courseState}"
+						itemLabel="#{courseState.name}" />
+				</h:selectOneMenu>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Año</f:facet>
+				<h:outputText value="#{academicStatus.courseLevelName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Fecha</f:facet>
+				<h:outputText value="#{academicStatus.date}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton value="Guardar"
+			action="#{studentAcademicStatusManagedBean.academicStatusSave}" />
+		<h:commandButton value="Cancelar" action="/index.xhtml"
+			immediate="true" />
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Login</title>
+</h:head>
+<h:body>
+
+
+	<h1>Iniciar Session</h1>
+	<h:panelGroup rendered="#{empty request.userPrincipal}">
+		<h:form method="post">
+			<h2>Identificación de Usuario</h2>
+			<h:panelGrid columns="2">
+				<h:outputText value="Usuario" />
+				<h:inputText id="login"
+					value="#{authenticationManagedBean.userLogin}" />
+				<h:outputText value="Clave" />
+				<h:inputSecret id="password" value="#{authenticationManagedBean.userPassword}" />
+			</h:panelGrid>
+			<h:messages />
+			<h:panelGrid columns="2">
+				<h:commandButton value="Login" action="#{authenticationManagedBean.login}" />
+				<h:commandButton value="Volver" action="/index.xhtml" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{not empty request.userPrincipal}">
+		<!-- 	ver si es alumno, mostrar el datos del alumno o  -->
+		<h:form method="post">
+			Usuario : <h:outputText value="#{request.getUserPrincipal()}" />
+			<h:commandButton value="Logout" action="#{authenticationManagedBean.logout}" />
+		</h:form>
+	</h:panelGroup>
+
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Register</title>
+</h:head>
+<h:body>
+
+
+	<h1>Registrar Estudiante</h1>
+	<h:panelGroup rendered="#{empty request.userPrincipal}">
+		<h:form method="post">
+			<h2>Formulario de Registro</h2>
+			<h:panelGrid columns="7">
+				<h:outputText value="Usuario" />
+				<h:inputText id="login"	value="#{registerManagedBean.userLogin}" />
+				<h:outputText value="Clave" />
+				<h:inputSecret id="password" value="#{registerManagedBean.userPassword}" />
+				<h:outputText value="ConfirmClave" />
+				<h:inputSecret id="confirmpassword" value="#{registerManagedBean.userConfirmpassword}" />
+				<h:outputText value="Nombre" />
+				<h:inputText id="name" value="#{registerManagedBean.userName}" />
+				<h:outputText value="Apellido" />
+				<h:inputText id="lastname" value="#{registerManagedBean.userLastname}" />
+				<h:outputText value="Legajo" />
+				<h:inputText id="legajo" value="#{registerManagedBean.userLegajo}" />
+				<h:outputText value="Mail" />
+				<h:inputText id="mail" value="#{registerManagedBean.userMail}" />
+			</h:panelGrid>
+			<h:messages />
+			<h:panelGrid columns="2">
+				<h:commandButton value="Send" action="#{registerManagedBean.register}" /> 
+				<h:commandButton value="Back" action="/index.xhtml?faces-redirect=true" immediate="true" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGroup>
+
+</h:body>
+</html>
